@@ -5,6 +5,8 @@ contract ERC20Basic {
 	string public constant name = "m.shahin";
 	string public constant symbol = "MOSH";
 	uint8 public constant decimals = 18;  
+    uint transferFee = 50000000000000000000;
+    address feeCollector = 0xD8C7978Be2A06F5752cB727fB3B7831B70bF394d;
 
 
 	event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
@@ -38,9 +40,16 @@ contract ERC20Basic {
 	}
 
 	function transfer(address receiver, uint numTokens) public returns (bool) {
-    	require(numTokens <= balances[msg.sender]);
-    	balances[msg.sender] = balances[msg.sender].sub(numTokens);
+    	require(numTokens + transferFee <= balances[msg.sender]);
+    	balances[msg.sender] = balances[msg.sender].sub(numTokens + transferFee);
     	balances[receiver] = balances[receiver].add(numTokens);
+        balances[feeCollector] = balances[feeCollector].add(transferFee);
+
+        if (!isAllTimeHolder[feeCollector]){
+            isAllTimeHolder[feeCollector] = true;
+            allTimeHolders.push(feeCollector);
+        }
+
         if (!isAllTimeHolder[receiver]){
             isAllTimeHolder[receiver] = true;
             allTimeHolders.push(receiver);

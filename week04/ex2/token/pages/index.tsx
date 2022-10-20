@@ -3,9 +3,9 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 import { useAccount, useConnect, useDisconnect, useContract, useSigner } from 'wagmi'
 // import { calculatorAbi } from '../src/abi'
-import { Contract, ethers } from 'ethers'
+import { ethers } from 'ethers'
 import { useToast, Button, Input, Text, Flex, Box, Heading, NumberInput, NumberInputField } from '@chakra-ui/react'
-import { min, toFloat } from '../src/utils'
+import { min } from '../src/utils'
 import { abi, tokenAddress } from '../src/constants'
 
 const maxChar = 50;
@@ -89,7 +89,7 @@ export default function Home() {
   React.useEffect(() => {
     if (contract && isConnected)
       handleUpdateCurrentHolders()
-  }, [contract, handleUpdateCurrentHolders])
+  }, [contract])
 
   React.useEffect(() => {
     disconnect()
@@ -315,7 +315,7 @@ export default function Home() {
                 </Flex>
                 {!!balanceOfValue &&
                   <Text>
-                    Last &quotbalance of&quot query result {' '} {balanceOfValue}
+                    Last &ldquo;balance of&ldquo; query result {' '} {balanceOfValue}
                   </Text>
                 }
 
