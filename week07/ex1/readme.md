@@ -91,8 +91,10 @@ We stake the NFT collection having the balance from the previous step in reward 
 After almost a minute and a half of staking we withdraw the collection. This is close to 15000 * 10 ^ 18, which is the reward for staking an NFT collection for one minute. Below we check the balance of the staker after the withdrawal and the owner of the collection.
 
 The balance is 15433 * 10 ** 18. It's almost (100 + 15000) * 10 ** 18.
+
 ![Alt text](../images/user%20balance.png)
 
 The ownership is back to the staker.
+
 ![Alt text](../images/nft%20col%20owner%201.png)
 
